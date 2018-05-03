@@ -64,7 +64,7 @@ variable "ssh_keys" {
 
 variable "tags" {
   description = "Instance tags"
-  default     = ""
+  default     = []
 }
 
 variable "user_data" {
