@@ -2,6 +2,11 @@
 # Variables
 # ==============================================================================
 
+variable "access_token" {
+  # Required
+  description = "DigitalOcean API access token"
+}
+
 variable "name" {
   # Required
   description = "Instance name"
