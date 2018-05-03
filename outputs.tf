@@ -29,7 +29,7 @@ output "ipv4_address" {
 
 output "ipv4_address_private" {
   description = "Instance private networking IPv4 address"
-  value       = "${var.private_networking == true ? digitalocean_droplet.instance.*.ipv4_address_private ? list()}"
+  value       = "${var.private_networking == true ? digitalocean_droplet.instance.*.ipv4_address_private : list()}"
 }
 
 output "ipv6_address" {
@@ -54,5 +54,5 @@ output "status" {
 
 output "tags" {
   description = "Instance tags"
-  value       = "${digitalocean_droplet.instance.*.tags || list()}"
+  value       = "${digitalocean_droplet.instance.0.tags ? digitalocean_droplet.instance.*.tags : list()}"
 }
