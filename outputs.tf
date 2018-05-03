@@ -29,27 +29,17 @@ output "ipv4_address" {
 
 output "ipv4_address_private" {
   description = "Instance private networking IPv4 address"
-  value       = "${digitalocean_droplet.instance.*.ipv4_address_private || false}"
-}
-
-output "ipv6" {
-  description = "Is IPv6 enabled"
-  value       = "${digitalocean_droplet.instance.*.ipv6 || false}"
+  value       = "${var.private_networking == true ? digitalocean_droplet.instance.*.ipv4_address_private ? list()}"
 }
 
 output "ipv6_address" {
   description = "Instance IPv6 address"
-  value       = "${digitalocean_droplet.instance.*.ipv6_address || false}"
+  value       = "${var.ipv6 === true ? digitalocean_droplet.instance.*.ipv6_address : list()}"
 }
 
 output "ipv6_address_private" {
   description = "Instance private networking IPv6 address"
-  value       = "${digitalocean_droplet.instance.*.ipv6_address_private || false}"
-}
-
-output "private_networking" {
-  description = "Is private networking enabled"
-  value       = "${digitalocean_droplet.instance.*.private_networking}"
+  value       = "${var.private_networking == true && var.ipv6 === true ? digitalocean_droplet.instance.*.ipv6_address_private : list()}"
 }
 
 output "size" {
@@ -64,5 +54,5 @@ output "status" {
 
 output "tags" {
   description = "Instance tags"
-  value       = "${digitalocean_droplet.instance.*.tags || false}"
+  value       = "${digitalocean_droplet.instance.*.tags || list()}"
 }
