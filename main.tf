@@ -6,7 +6,7 @@ provider "digitalocean" {
   token = "${var.access_token}"
 }
 
-resource "digitalocean_droplet" "droplet" {
+resource "digitalocean_droplet" "instance" {
   count = "${var.instances}"
 
   backups            = "${var.backups}"
