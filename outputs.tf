@@ -34,12 +34,12 @@ output "ipv4_address_private" {
 
 output "ipv6_address" {
   description = "Instance IPv6 address"
-  value       = "${var.ipv6 === true ? digitalocean_droplet.instance.*.ipv6_address : list()}"
+  value       = "${var.ipv6 == true ? digitalocean_droplet.instance.*.ipv6_address : list()}"
 }
 
 output "ipv6_address_private" {
   description = "Instance private networking IPv6 address"
-  value       = "${var.private_networking == true && var.ipv6 === true ? digitalocean_droplet.instance.*.ipv6_address_private : list()}"
+  value       = "${var.private_networking == true && var.ipv6 == true ? digitalocean_droplet.instance.*.ipv6_address_private : list()}"
 }
 
 output "size" {
